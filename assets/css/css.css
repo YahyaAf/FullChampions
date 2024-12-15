@@ -1,0 +1,26 @@
+/* Body background styling */
+body {
+    background-image: url('../img/7951a589f90b4c7d0a1e1fb9c811c81e.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    margin: 0;
+    padding: 0;
+}
+.displayFlex{
+    display: flex;
+}
+@media only screen and (max-width: 950px) {
+    .display{
+        display: block;
+    }
+    .marginTop{
+        margin-top: 100px;
+    }
+    .gapPlayer{
+        width: 80px;
+        height: 130px;
+    }
+  }
+
