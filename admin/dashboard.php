@@ -210,7 +210,7 @@
             </main>
     
             <footer class="w-full bg-white text-right p-4">
-                Built by <a target="_blank" href="https://davidgrzyb.com" class="underline">David Grzyb</a>.
+                Built by <a target="_blank" href="https://www.linkedin.com/in/yahya-afadisse-236b022a9/" class="underline">Yahya Afadisse</a>.
             </footer>
         </div>
         
