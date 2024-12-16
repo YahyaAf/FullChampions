@@ -124,8 +124,8 @@
                     <i class="fas fa-user-plus mr-2"></i> Ajouter un Joueur
                 </h2>
 
-                <!-- Form container with dark background -->
-                <form action="add_player.php" method="POST" 
+                <!-- Main Form Container -->
+                <form action="add_player.php" method="POST"
                     class="bg-gray-900 rounded-lg p-6 grid grid-cols-2 gap-6 space-y-0">
                     
                     <!-- Nom -->
@@ -133,7 +133,8 @@
                         <label for="nom" class="text-white font-medium dark:text-gray-300">
                             <i class="fas fa-user mr-2"></i> Nom
                         </label>
-                        <input type="text" id="nom" name="nom" placeholder="Entrez le nom"
+                        <input type="text" id="nom" name="nom"
+                            placeholder="Entrez le nom"
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
 
@@ -142,7 +143,8 @@
                         <label for="prenom" class="text-white font-medium dark:text-gray-300">
                             <i class="fas fa-user-tie mr-2"></i> Prénom
                         </label>
-                        <input type="text" id="prenom" name="prenom" placeholder="Entrez le prénom"
+                        <input type="text" id="prenom" name="prenom"
+                            placeholder="Entrez le prénom"
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
 
@@ -151,7 +153,8 @@
                         <label for="nationalite" class="text-white font-medium dark:text-gray-300">
                             <i class="fas fa-flag mr-2"></i> Nationalité
                         </label>
-                        <input type="text" id="nationalite" name="nationalite" placeholder="Entrez la nationalité"
+                        <input type="text" id="nationalite" name="nationalite"
+                            placeholder="Entrez la nationalité"
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
 
@@ -160,32 +163,149 @@
                         <label for="club" class="text-white font-medium dark:text-gray-300">
                             <i class="fas fa-building mr-2"></i> Club
                         </label>
-                        <input type="text" id="club" name="club" placeholder="Entrez le club"
+                        <input type="text" id="club" name="club"
+                            placeholder="Entrez le club"
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+
+                    <!-- Position -->
+                    <div>
+                        <label for="position" class="text-white font-medium dark:text-gray-300">
+                            <i class="fas fa-sitemap mr-2"></i> Position
+                        </label>
+                        <select id="position" name="position"
+                                class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                >
+                            <option value="GK">Gardien (GK)</option>
+                            <option value="LB">Arrière Gauche (LB)</option>
+                            <option value="CBleft">Défenseur Gauche (CB Left)</option>
+                            <option value="CBright">Défenseur Droit (CB Right)</option>
+                            <option value="RB">Arrière Droit (RB)</option>
+                            <option value="CMFleft">Milieu Gauche (CMF Left)</option>
+                            <option value="DMF">Milieu Défensif (DMF)</option>
+                            <option value="CMFright">Milieu Droit (CMF Right)</option>
+                            <option value="LWF">Ailier Gauche (LWF)</option>
+                            <option value="ST">Attaquant (ST)</option>
+                            <option value="RWF">Ailier Droit (RWF)</option>
+                        </select>
+                    </div>
+                    <!-- Rating -->
+                    <div>
+                        <label for="club" class="text-white font-medium dark:text-gray-300">
+                            <i class="fas fa-building mr-2"></i> Rating
+                        </label>
+                        <input type="text" id="rating" name="rating"
+                            placeholder="Entrez le rating"
+                            class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+
+                    <!-- GK Ratings -->
+                    <div id="divGk" class="col-span-2 mt-6 hidden">
+                        <h5 class="text-lg font-semibold text-blue-400 mb-2">GK Ratings</h5>
+
+                        <div class="grid grid-cols-3 gap-6">
+                            <div>
+                                <label for="diving" class="text-gray-200 mt-2">Diving</label>
+                                <input type="number" id="diving" name="diving"
+                                    class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:ring-2 focus:ring-blue-500">
+                            </div>
+
+                            <div>
+                                <label for="handling" class="text-gray-200 mt-2">Handling</label>
+                                <input type="number" id="handling" name="handling"
+                                    class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:ring-2 focus:ring-blue-500">
+                            </div>
+
+                            <div>
+                                <label for="kicking" class="text-gray-200 mt-2">Kicking</label>
+                                <input type="number" id="kicking" name="kicking"
+                                    class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:ring-2 focus:ring-blue-500">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-6">
+                            <div>
+                                <label for="reflexes" class="text-gray-200 mt-2">Reflexes</label>
+                                <input type="number" id="reflexes" name="reflexes"
+                                    class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:ring-2 focus:ring-blue-500">
+                            </div>
+
+                            <div>
+                                <label for="speed" class="text-gray-200 mt-2">Speed</label>
+                                <input type="number" id="speed" name="speed"
+                                    class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:ring-2 focus:ring-blue-500">
+                            </div>
+
+                            <div>
+                                <label for="positioning" class="text-gray-200 mt-2">Positioning</label>
+                                <input type="number" id="positioning" name="positioning"
+                                    class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:ring-2 focus:ring-blue-500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Player Ratings -->
+                    <div id="divPlayer" class="col-span-2 mt-6 hidden">
+                        <h5 class="text-lg font-semibold text-blue-400 mb-2">Player Ratings</h5>
+
+                        <div class="grid grid-cols-3 gap-6">
+                            <div>
+                                <label for="pace" class="text-gray-200 mt-2">Pace</label>
+                                <input type="number" id="pace" name="pace"
+                                    class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:ring-2 focus:ring-blue-500">
+                            </div>
+
+                            <div>
+                                <label for="shooting" class="text-gray-200 mt-2">Shooting</label>
+                                <input type="number" id="shooting" name="shooting"
+                                    class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:ring-2 focus:ring-blue-500">
+                            </div>
+
+                            <div>
+                                <label for="passing" class="text-gray-200 mt-2">Passing</label>
+                                <input type="number" id="passing" name="passing"
+                                    class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:ring-2 focus:ring-blue-500">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-6">
+                            <div>
+                                <label for="dribbling" class="text-gray-200 mt-2">Dribbling</label>
+                                <input type="number" id="dribbling" name="dribbling"
+                                    class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:ring-2 focus:ring-blue-500">
+                            </div>
+
+                            <div>
+                                <label for="defending" class="text-gray-200 mt-2">Defending</label>
+                                <input type="number" id="defending" name="defending"
+                                    class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:ring-2 focus:ring-blue-500">
+                            </div>
+
+                            <div>
+                                <label for="physical" class="text-gray-200 mt-2">Physical</label>
+                                <input type="number" id="physical" name="physical"
+                                    class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:ring-2 focus:ring-blue-500">
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Submit Button -->
                     <div class="col-span-2">
                         <button type="submit"
-                            class="w-full bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold py-2 px-4 rounded-lg mt-4 shadow-lg hover:opacity-90 focus:outline-none transition-transform transform hover:scale-105 dark:bg-green-700 dark:hover:bg-green-800">
-                            <i class="fas fa-paper-plane mr-2"></i> Ajouter Joueur
+                                class="w-full bg-gradient-to-r from-green-500 to-teal-600 text-white py-2 px-4 rounded-lg mt-4">
+                            <i class="fas fa-paper-plane"></i> Ajouter Joueur
                         </button>
                     </div>
+
                 </form>
             </main>
-
-            
-            <!-- Footer -->
             <footer class="w-full bg-white text-right p-4">
                 Built by <a target="_blank" href="https://www.linkedin.com/in/yahya-afadisse-236b022a9/" class="underline">Yahya Afadisse</a>.
             </footer>
         </div>
-        
-    </div>
 
     <!-- AlpineJS -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <!-- Font Awesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+    <script src="../assets/js/scripts.js"></script>
 </body>
 </html>
