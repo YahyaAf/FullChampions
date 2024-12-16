@@ -12,13 +12,13 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
         .font-family-karla { font-family: karla; }
-        .bg-sidebar { background: #3d68ff; }
-        .cta-btn { color: #3d68ff; }
-        .upgrade-btn { background: #1947ee; }
-        .upgrade-btn:hover { background: #0038fd; }
-        .active-nav-link { background: #1947ee; }
-        .nav-item:hover { background: #1947ee; }
-        .account-link:hover { background: #3d68ff; }
+        .bg-sidebar { background:rgb(44, 44, 45); }
+        .cta-btn { background:rgb(44, 44, 45); }
+        .upgrade-btn { background:rgb(44, 44, 45); }
+        .upgrade-btn:hover { background:rgb(44, 44, 45); }
+        .active-nav-link { background:rgb(44, 44, 45); }
+        .nav-item:hover { background:rgb(44, 44, 45); }
+        .account-link:hover { background:rgb(44, 44, 45); }
     </style>
 </head>
 <body class="bg-gray-100 font-family-karla flex">
@@ -26,9 +26,6 @@
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
             <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
-            <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                <i class="fas fa-plus mr-3"></i> New Report
-            </button>
         </div>
         <nav class="text-white text-base font-semibold pt-3">
             <a href="dashboard.php" class="flex items-center text-white py-4 pl-6 nav-item">
