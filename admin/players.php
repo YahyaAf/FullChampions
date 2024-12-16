@@ -119,11 +119,63 @@
     
         <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
             <main class="w-full flex-grow p-6">
-                <h1 class="text-3xl text-black pb-6">Blank Page</h1>
+                <!-- Title -->
+                <h2 class="text-3xl font-extrabold text-black mb-6 text-center dark:text-black-300">
+                    <i class="fas fa-user-plus mr-2"></i> Ajouter un Joueur
+                </h2>
 
-                <!-- Content goes here! 😁 -->
+                <!-- Form container with dark background -->
+                <form action="add_player.php" method="POST" 
+                    class="bg-gray-900 rounded-lg p-6 grid grid-cols-2 gap-6 space-y-0">
+                    
+                    <!-- Nom -->
+                    <div>
+                        <label for="nom" class="text-white font-medium dark:text-gray-300">
+                            <i class="fas fa-user mr-2"></i> Nom
+                        </label>
+                        <input type="text" id="nom" name="nom" placeholder="Entrez le nom"
+                            class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+
+                    <!-- Prénom -->
+                    <div>
+                        <label for="prenom" class="text-white font-medium dark:text-gray-300">
+                            <i class="fas fa-user-tie mr-2"></i> Prénom
+                        </label>
+                        <input type="text" id="prenom" name="prenom" placeholder="Entrez le prénom"
+                            class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+
+                    <!-- Nationalité -->
+                    <div>
+                        <label for="nationalite" class="text-white font-medium dark:text-gray-300">
+                            <i class="fas fa-flag mr-2"></i> Nationalité
+                        </label>
+                        <input type="text" id="nationalite" name="nationalite" placeholder="Entrez la nationalité"
+                            class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+
+                    <!-- Club -->
+                    <div>
+                        <label for="club" class="text-white font-medium dark:text-gray-300">
+                            <i class="fas fa-building mr-2"></i> Club
+                        </label>
+                        <input type="text" id="club" name="club" placeholder="Entrez le club"
+                            class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="col-span-2">
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold py-2 px-4 rounded-lg mt-4 shadow-lg hover:opacity-90 focus:outline-none transition-transform transform hover:scale-105 dark:bg-green-700 dark:hover:bg-green-800">
+                            <i class="fas fa-paper-plane mr-2"></i> Ajouter Joueur
+                        </button>
+                    </div>
+                </form>
             </main>
-    
+
+            
+            <!-- Footer -->
             <footer class="w-full bg-white text-right p-4">
                 Built by <a target="_blank" href="https://www.linkedin.com/in/yahya-afadisse-236b022a9/" class="underline">Yahya Afadisse</a>.
             </footer>
