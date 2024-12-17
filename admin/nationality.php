@@ -129,7 +129,7 @@
                 </h2>
 
                 <!-- Form container with dark background -->
-                <form action="crud/create.php" method="POST" class="bg-gray-900 rounded-lg p-5 flex flex-col gap-6">
+                <form action="crud-nationality/create.php" method="POST" class="bg-gray-900 rounded-lg p-5 flex flex-col gap-6">
                     <!-- Nom de la nationalité -->
                     <div class="flex flex-col">
                         <label for="nom" class="text-white font-medium dark:text-gray-300">
