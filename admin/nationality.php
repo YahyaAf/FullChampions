@@ -21,6 +21,9 @@
         .account-link:hover { background:rgb(44, 44, 45); }
     </style>
 </head>
+    <?php
+        include 'connexion/connecter.php';
+    ?>
 <body class="bg-gray-100 font-family-karla flex">
 
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
@@ -124,7 +127,7 @@
                 </h2>
 
                 <!-- Form container with dark background -->
-                <form action="add_nationality.php" method="POST" class="bg-gray-900 rounded-lg p-5 flex flex-col gap-6">
+                <form action="add_nationality.php" method="POST" enctype="multipart/form-data" class="bg-gray-900 rounded-lg p-5 flex flex-col gap-6">
                     
                     <!-- Nom de la nationalité -->
                     <div class="flex flex-col">
@@ -135,12 +138,12 @@
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
 
-                    <!-- URL du drapeau -->
+                    <!-- Fichier du drapeau -->
                     <div class="flex flex-col">
                         <label for="flag" class="text-white font-medium dark:text-gray-300">
-                            <i class="fas fa-link mr-2"></i> URL du Drapeau
+                            <i class="fas fa-file-upload mr-2"></i> Fichier du Drapeau
                         </label>
-                        <input type="url" id="flag" name="flag" placeholder="Entrez l'URL du drapeau"
+                        <input type="file" id="flag" name="flag" accept="image/*"
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
 
@@ -159,10 +162,11 @@
             </footer>
         </div>
 
-
     <!-- AlpineJS -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <!-- Font Awesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+    
+   
 </body>
 </html>
