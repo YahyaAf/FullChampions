@@ -129,7 +129,7 @@
                 </h2>
 
                 <!-- Form container with dark background -->
-                <form action="crud-nationality/create.php" method="POST" class="bg-gray-900 rounded-lg p-5 flex flex-col gap-6">
+                <form action="crud-nationality/create.php" method="POST" enctype="multipart/form-data" class="bg-gray-900 rounded-lg p-5 flex flex-col gap-6">
                     <!-- Nom de la nationalité -->
                     <div class="flex flex-col">
                         <label for="nom" class="text-white font-medium dark:text-gray-300">
@@ -149,12 +149,10 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <div>
-                        <button type="submit"
-                            class="w-full bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold py-2 px-4 rounded-lg mt-4 shadow-lg hover:opacity-90 focus:outline-none transition-transform transform hover:scale-105 dark:bg-green-700 dark:hover:bg-green-800">
-                            <i class="fas fa-paper-plane mr-2"></i> Ajouter Nationalité
-                        </button>
-                    </div>
+                    <button type="submit"
+                            class="w-full bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold py-2 px-4 rounded-lg mt-4 shadow-lg hover:opacity-90">
+                        Ajouter Nationalité
+                    </button>
                 </form>
             </main>
             <!-- Liste des nationality -->
@@ -176,7 +174,7 @@
                                         <tr class="hover:bg-gray-700">
                                             <td class="py-2 px-4 text-gray-300"><?php echo $row['name']; ?></td>
                                             <td class="py-2 px-4">
-                                                <img src="<?php echo $row['flag']; ?>" alt="drapeau" class="rounded-lg" width="50">
+                                                <img src="<?php echo './crud-nationality/'.$row['flag']; ?>" alt="drapeau" class="rounded-lg" width="50">
                                             </td>
                                             <td class="py-2 px-4">
                                                 <a href="delete.php?id=<?php echo $row['nationality_id']; ?>"
