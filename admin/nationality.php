@@ -177,7 +177,8 @@
                                                 <img src="<?php echo './crud-nationality/'.$row['flag']; ?>" alt="drapeau" class="rounded-lg" width="50">
                                             </td>
                                             <td class="py-2 px-4">
-                                                <a href="delete.php?id=<?php echo $row['nationality_id']; ?>"
+                                                <?php $id =$row['nationality_id']?>
+                                                <a href="crud-nationality/delete.php?id=<?php echo $id; ?>"
                                                 class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-200">
                                                     Supprimer
                                                 </a>
