@@ -182,7 +182,7 @@
                                                 class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-200">
                                                     Supprimer
                                                 </a>
-                                                <a href="update.php?id=<?php echo $row['nationality_id']; ?>"
+                                                <a href="crud-nationality/update.php?id=<?php echo $id; ?>"
                                                 class="ml-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200">
                                                     Modifier
                                                 </a>
