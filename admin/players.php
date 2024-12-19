@@ -209,15 +209,15 @@
                                 >
                             <option value="GK">Gardien (GK)</option>
                             <option value="LB">Arrière Gauche (LB)</option>
-                            <option value="CBleft">Défenseur Gauche (CB Left)</option>
-                            <option value="CBright">Défenseur Droit (CB Right)</option>
+                            <option value="CBL">Défenseur Gauche (CB Left)</option>
+                            <option value="CBR">Défenseur Droit (CB Right)</option>
                             <option value="RB">Arrière Droit (RB)</option>
-                            <option value="CMFleft">Milieu Gauche (CMF Left)</option>
+                            <option value="CML">Milieu Gauche (CMF Left)</option>
                             <option value="DMF">Milieu Défensif (DMF)</option>
-                            <option value="CMFright">Milieu Droit (CMF Right)</option>
-                            <option value="LWF">Ailier Gauche (LWF)</option>
+                            <option value="CMR">Milieu Droit (CMF Right)</option>
+                            <option value="LW">Ailier Gauche (LWF)</option>
                             <option value="ST">Attaquant (ST)</option>
-                            <option value="RWF">Ailier Droit (RWF)</option>
+                            <option value="RW">Ailier Droit (RWF)</option>
                         </select>
                     </div>
                     <!-- Photo du Joueur -->
