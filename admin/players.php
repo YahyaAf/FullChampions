@@ -148,16 +148,6 @@
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
 
-                    <!-- Prénom -->
-                    <div>
-                        <label for="prenom" class="text-white font-medium dark:text-gray-300">
-                            <i class="fas fa-user-tie mr-2"></i> Prénom
-                        </label>
-                        <input type="text" id="prenom" name="prenom"
-                            placeholder="Entrez le prénom"
-                            class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    </div>
-
                     <!-- Rating -->
                     <div>
                         <label for="club" class="text-white font-medium dark:text-gray-300">

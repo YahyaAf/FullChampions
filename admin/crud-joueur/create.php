@@ -1,7 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['nom'];
-    $prenom = $_POST['prenom'];
     $rating = $_POST['rating'];
     $nationality = $_POST['nationality']; // Nationality name or unique identifier
     $club = $_POST['club']; // Club name or unique identifier
