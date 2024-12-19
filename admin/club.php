@@ -21,6 +21,12 @@
         .account-link:hover { background:rgb(44, 44, 45); }
     </style>
 </head>
+<?php
+    include 'connexion/connecter.php';
+        $query = "SELECT * FROM clubs";
+        $result = $conn->query($query);
+        $rows = $result->fetch_all(MYSQLI_ASSOC); 
+?>
 <body class="bg-gray-100 font-family-karla flex">
 
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
@@ -151,6 +157,51 @@
                     </button>
                 </form>
             </main>
+            <!-- Liste des nationality -->
+            <div class="container mx-auto mt-8">
+                <h1 class="text-2xl font-bold text-center mb-6">Liste des Nationalités</h1>
+                <div class="bg-gray-900 rounded-lg p-5 shadow-lg">
+                    <table class="w-full table-auto bg-gray-800 rounded-lg">
+                            <thead>
+                                <tr class="bg-gray-900">
+                                    <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Nom</th>
+                                    <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Flag</th>
+                                    <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <?php if ($result && $result->num_rows > 0): ?>
+                                    <?php foreach ($rows as $row): ?>
+                                        <tr class="hover:bg-gray-700">
+                                            <td class="py-2 px-4 text-gray-300"><?php echo $row['name']; ?></td>
+                                            <td class="py-2 px-4">
+                                                <img src="<?php echo './crud-club/'.$row['logo']; ?>" alt="drapeau" class="rounded-lg" width="50">
+                                            </td>
+                                            <td class="py-2 px-4">
+                                                <?php $id =$row['club_id']?>
+                                                <a href="crud-club/delete.php?id=<?php echo $id; ?>"
+                                                class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-200">
+                                                    Supprimer
+                                                </a>
+                                                <a href="crud-club/update.php?id=<?php echo $id; ?>"
+                                                class="ml-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200">
+                                                    Modifier
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="4" class="text-center py-4 text-gray-500">
+                                            Aucune nationalité trouvée.
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
 
             <footer class="w-full bg-white text-right p-4">
                 Built by <a target="_blank" href="https://www.linkedin.com/in/yahya-afadisse-236b022a9/" class="underline">Yahya Afadisse</a>.
