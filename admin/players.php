@@ -148,12 +148,21 @@
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
 
+                    <!-- Photo du Joueur -->
+                    <div>
+                        <label for="photo" class="text-white font-medium dark:text-gray-300">
+                            <i class="fas fa-image mr-2"></i> Photo du Joueur
+                        </label>
+                        <input type="file" id="photo" name="photo"
+                            class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+
                     <!-- Nationalité -->
                     <div>
                         <label for="nationalite" class="text-white font-medium dark:text-gray-300">
                             <i class="fas fa-flag mr-2"></i> Nationalité
                         </label>
-                        <input type="text" id="nationalite" name="nationalite"
+                        <input type="file" id="nationalite" name="nationalite"
                             placeholder="Entrez la nationalité"
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
@@ -163,7 +172,7 @@
                         <label for="club" class="text-white font-medium dark:text-gray-300">
                             <i class="fas fa-building mr-2"></i> Club
                         </label>
-                        <input type="text" id="club" name="club"
+                        <input type="file" id="club" name="club"
                             placeholder="Entrez le club"
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
