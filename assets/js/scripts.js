@@ -14,10 +14,3 @@ position.addEventListener('change', () => {
     }
 });
 
-if (position.value === "GK") {
-    divGk.style.display = "block";
-    divPlayer.style.display = "none";
-} else {
-    divGk.style.display = "none";
-    divPlayer.style.display = "block";
-}

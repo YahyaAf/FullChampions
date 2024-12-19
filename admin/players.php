@@ -135,7 +135,7 @@
                 </h2>
 
                 <!-- Main Form Container -->
-                <form action="add_player.php" method="POST"
+                <form action="crud-joueur/create.php" method="POST"
                     class="bg-gray-900 rounded-lg p-6 grid grid-cols-2 gap-6 space-y-0">
                     
                     <!-- Nom -->
