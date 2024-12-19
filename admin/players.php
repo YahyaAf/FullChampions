@@ -21,6 +21,16 @@
         .account-link:hover { background:rgb(44, 44, 45); }
     </style>
 </head>
+<?php
+    include 'connexion/connecter.php';
+        $query_nationality = "SELECT * FROM nationalities";
+        $result_nationality = $conn->query($query_nationality);
+        $nationalities = $result_nationality->fetch_all(MYSQLI_ASSOC); 
+
+        $query_club = "SELECT * FROM clubs";
+        $result_club = $conn->query($query_club);
+        $clubs = $result_club->fetch_all(MYSQLI_ASSOC); 
+?>
 <body class="bg-gray-100 font-family-karla flex">
 
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
@@ -148,23 +158,30 @@
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
 
-                    <!-- Photo du Joueur -->
+                    <!-- Rating -->
                     <div>
-                        <label for="photo" class="text-white font-medium dark:text-gray-300">
-                            <i class="fas fa-image mr-2"></i> Photo du Joueur
+                        <label for="club" class="text-white font-medium dark:text-gray-300">
+                            <i class="fas fa-building mr-2"></i> Rating
                         </label>
-                        <input type="file" id="photo" name="photo"
+                        <input type="text" id="rating" name="rating"
+                            placeholder="Entrez le rating"
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
-
+                    
                     <!-- Nationalité -->
                     <div>
                         <label for="nationalite" class="text-white font-medium dark:text-gray-300">
                             <i class="fas fa-flag mr-2"></i> Nationalité
                         </label>
-                        <input type="file" id="nationalite" name="nationalite"
-                            placeholder="Entrez la nationalité"
+                        <?php ?>
+                        <select name="nationality" id="nationality" 
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <?php foreach ($nationalities as $nationality): ?>
+                                <option value="<?php echo htmlspecialchars($nationality['name']); ?>">
+                                    <?php echo htmlspecialchars($nationality['name']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
 
                     <!-- Club -->
@@ -172,9 +189,14 @@
                         <label for="club" class="text-white font-medium dark:text-gray-300">
                             <i class="fas fa-building mr-2"></i> Club
                         </label>
-                        <input type="file" id="club" name="club"
-                            placeholder="Entrez le club"
+                        <select name="club" id="club" 
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <?php foreach ($clubs as $club): ?>
+                                <option value="<?php echo htmlspecialchars($club['name']); ?>">
+                                    <?php echo htmlspecialchars($club['name']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
 
                     <!-- Position -->
@@ -198,15 +220,15 @@
                             <option value="RWF">Ailier Droit (RWF)</option>
                         </select>
                     </div>
-                    <!-- Rating -->
+                    <!-- Photo du Joueur -->
                     <div>
-                        <label for="club" class="text-white font-medium dark:text-gray-300">
-                            <i class="fas fa-building mr-2"></i> Rating
+                        <label for="photo" class="text-white font-medium dark:text-gray-300">
+                            <i class="fas fa-image mr-2"></i> Photo du Joueur
                         </label>
-                        <input type="text" id="rating" name="rating"
-                            placeholder="Entrez le rating"
+                        <input type="file" id="photo" name="photo"
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
+
 
                     <!-- GK Ratings -->
                     <div id="divGk" class="col-span-2 mt-6 hidden">
