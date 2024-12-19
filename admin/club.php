@@ -124,8 +124,8 @@
                 </h2>
 
                 <!-- Form container with dark background -->
-                <form action="add_club.php" method="POST" class="bg-gray-900 rounded-lg p-5 flex flex-col gap-6">
-                    
+                <!-- Formulaire d'ajout du club avec upload du logo -->
+                <form action="crud-club/create.php" method="POST" enctype="multipart/form-data" class="bg-gray-900 rounded-lg p-5 flex flex-col gap-6">
                     <!-- Nom du club -->
                     <div class="flex flex-col">
                         <label for="name" class="text-white font-medium dark:text-gray-300">
@@ -135,22 +135,20 @@
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
 
-                    <!-- URL du logo -->
+                    <!-- Upload du logo (Input de type Fichier) -->
                     <div class="flex flex-col">
                         <label for="logo" class="text-white font-medium dark:text-gray-300">
-                            <i class="fas fa-image mr-2"></i> URL du Logo
+                            <i class="fas fa-file-upload mr-2"></i> Logo du Club
                         </label>
-                        <input type="url" id="logo" name="logo" placeholder="Entrez l'URL du logo"
+                        <input type="file" id="logo" name="logo" accept="image/*"
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
 
-                    <!-- Submit Button -->
-                    <div>
-                        <button type="submit"
-                            class="w-full bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold py-2 px-4 rounded-lg mt-4 shadow-lg hover:opacity-90 focus:outline-none transition-transform transform hover:scale-105 dark:bg-green-700 dark:hover:bg-green-800">
-                            <i class="fas fa-paper-plane mr-2"></i> Ajouter Club
-                        </button>
-                    </div>
+                    <!-- Bouton submit -->
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold py-2 px-4 rounded-lg mt-4 shadow-lg hover:opacity-90">
+                        <i class="fas fa-paper-plane mr-2"></i> Ajouter Club
+                    </button>
                 </form>
             </main>
 
