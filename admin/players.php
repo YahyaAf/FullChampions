@@ -135,7 +135,7 @@
                 </h2>
 
                 <!-- Main Form Container -->
-                <form action="crud-joueur/create.php" method="POST"
+                <form action="crud-joueur/create.php" method="POST" enctype="multipart/form-data"
                     class="bg-gray-900 rounded-lg p-6 grid grid-cols-2 gap-6 space-y-0">
                     
                     <!-- Nom -->
@@ -197,6 +197,7 @@
                         <select id="position" name="position"
                                 class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 >
+                            <option value=0>Select un joueur</option>
                             <option value="GK">Gardien (GK)</option>
                             <option value="LB">Arrière Gauche (LB)</option>
                             <option value="CBL">Défenseur Gauche (CB Left)</option>
