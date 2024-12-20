@@ -165,7 +165,7 @@
                             <thead>
                                 <tr class="bg-gray-900">
                                     <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Nom</th>
-                                    <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Flag</th>
+                                    <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">logo</th>
                                     <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Actions</th>
                                 </tr>
                             </thead>

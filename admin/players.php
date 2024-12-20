@@ -21,18 +21,49 @@
         .account-link:hover { background:rgb(44, 44, 45); }
     </style>
 </head>
-<?php
-    include 'connexion/connecter.php';
-        $query_nationality = "SELECT * FROM nationalities";
-        $result_nationality = $conn->query($query_nationality);
-        $nationalities = $result_nationality->fetch_all(MYSQLI_ASSOC); 
-
-        $query_club = "SELECT * FROM clubs";
-        $result_club = $conn->query($query_club);
-        $clubs = $result_club->fetch_all(MYSQLI_ASSOC); 
-?>
 <body class="bg-gray-100 font-family-karla flex">
+    <?php
+        include 'connexion/connecter.php';
+            $query_nationality = "SELECT * FROM nationalities";
+            $result_nationality = $conn->query($query_nationality);
+            $nationalities = $result_nationality->fetch_all(MYSQLI_ASSOC); 
 
+            $query_club = "SELECT * FROM clubs";
+            $result_club = $conn->query($query_club);
+            $clubs = $result_club->fetch_all(MYSQLI_ASSOC); 
+    ?>
+    <?php
+        include 'connexion/connecter.php';
+
+        $query = "
+            SELECT 
+                pl.name AS player_name,
+                pl.photo,
+                pl.position,
+                c.name AS club_name,
+                n.name AS nationality_name,
+                pl.rating,
+                g.diving,
+                g.handling,
+                g.kicking,
+                g.reflexes,
+                g.speed,
+                g.positioning,
+                p.pace,
+                p.shooting,
+                p.passing,
+                p.dribbling,
+                p.defending,
+                p.physical
+            FROM players pl
+            LEFT JOIN clubs c ON pl.club_id = c.club_id
+            LEFT JOIN nationalities n ON pl.nationality_id = n.nationality_id
+            LEFT JOIN physicalgk g ON pl.physicalGk_id = g.physicalGk_id
+            LEFT JOIN physicalplayer p ON pl.physicalPlayer_id = p.physicalPlayer_id
+        ";
+        $result = $conn->query($query);
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+    ?>
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
             <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
@@ -197,7 +228,7 @@
                         <select id="position" name="position"
                                 class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 >
-                            <option value=0>Select un joueur</option>
+                            <option value="" selected>Select un joueur</option>
                             <option value="GK">Gardien (GK)</option>
                             <option value="LB">Arrière Gauche (LB)</option>
                             <option value="CBL">Défenseur Gauche (CB Left)</option>
@@ -319,6 +350,70 @@
 
                 </form>
             </main>
+            <!-- Liste des joueurs -->
+            <div class="container mx-auto mt-8">
+                <h1 class="text-2xl font-bold text-center mb-6">Liste des Joueurs</h1>
+                <div class="bg-gray-900 rounded-lg p-5 shadow-lg">
+                    <table class="w-full table-auto bg-gray-800 rounded-lg">
+                        <thead>
+                            <tr class="bg-gray-900">
+                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Nom</th>
+                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Photo</th>
+                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Position</th>
+                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Club</th>
+                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Nationalité</th>
+                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Note</th>
+                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Diving</th>
+                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Handling</th>
+                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Kicking</th>
+                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Reflexes</th>
+                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Speed</th>
+                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Positioning</th>
+                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if ($result && $result->num_rows > 0): ?>
+                                <?php foreach ($rows as $row): ?>
+                                    <tr class="hover:bg-gray-700">
+                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['player_name']; ?></td>
+                                        <td class="py-2 px-4">
+                                            <img src="<?php echo './crud-joueur/' . $row['photo']; ?>" alt="Photo" class="rounded-lg" width="50">
+                                        </td>
+                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['position']; ?></td>
+                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['club_name']; ?></td>
+                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['nationality_name']; ?></td>
+                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['rating']; ?></td>
+                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['diving'] ?? 'N/A'; ?></td>
+                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['handling'] ?? 'N/A'; ?></td>
+                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['kicking'] ?? 'N/A'; ?></td>
+                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['reflexes'] ?? 'N/A'; ?></td>
+                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['speed'] ?? 'N/A'; ?></td>
+                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['positioning'] ?? 'N/A'; ?></td>
+                                        <td class="py-2 px-4">
+                                            <?php $id = $row['club_id'] ?? 0; ?>
+                                            <a href="crud-club/delete.php?id=<?php echo $id; ?>"
+                                            class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-200">
+                                                Supprimer
+                                            </a>
+                                            <a href="crud-club/update.php?id=<?php echo $id; ?>"
+                                            class="ml-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200">
+                                                Modifier
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="13" class="text-center py-4 text-gray-500">
+                                        Aucun joueur trouvé.
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <footer class="w-full bg-white text-right p-4">
                 Built by <a target="_blank" href="https://www.linkedin.com/in/yahya-afadisse-236b022a9/" class="underline">Yahya Afadisse</a>.
             </footer>
