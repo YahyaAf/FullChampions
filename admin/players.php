@@ -36,7 +36,8 @@
         include 'connexion/connecter.php';
 
         $query = "
-            SELECT 
+            SELECT
+                player_id, 
                 pl.name AS player_name,
                 pl.photo,
                 pl.position,
@@ -350,70 +351,110 @@
 
                 </form>
             </main>
-            <!-- Liste des joueurs -->
             <div class="container mx-auto mt-8">
-                <h1 class="text-2xl font-bold text-center mb-6">Liste des Joueurs</h1>
-                <div class="bg-gray-900 rounded-lg p-5 shadow-lg">
-                    <table class="w-full table-auto bg-gray-800 rounded-lg">
-                        <thead>
-                            <tr class="bg-gray-900">
-                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Nom</th>
-                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Photo</th>
-                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Position</th>
-                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Club</th>
-                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Nationalité</th>
-                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Note</th>
-                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Diving</th>
-                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Handling</th>
-                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Kicking</th>
-                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Reflexes</th>
-                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Speed</th>
-                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Positioning</th>
-                                <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if ($result && $result->num_rows > 0): ?>
-                                <?php foreach ($rows as $row): ?>
-                                    <tr class="hover:bg-gray-700">
-                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['player_name']; ?></td>
-                                        <td class="py-2 px-4">
-                                            <img src="<?php echo './crud-joueur/' . $row['photo']; ?>" alt="Photo" class="rounded-lg" width="50">
-                                        </td>
-                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['position']; ?></td>
-                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['club_name']; ?></td>
-                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['nationality_name']; ?></td>
-                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['rating']; ?></td>
-                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['diving'] ?? 'N/A'; ?></td>
-                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['handling'] ?? 'N/A'; ?></td>
-                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['kicking'] ?? 'N/A'; ?></td>
-                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['reflexes'] ?? 'N/A'; ?></td>
-                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['speed'] ?? 'N/A'; ?></td>
-                                        <td class="py-2 px-4 text-gray-300"><?php echo $row['positioning'] ?? 'N/A'; ?></td>
-                                        <td class="py-2 px-4">
-                                            <?php $id = $row['club_id'] ?? 0; ?>
-                                            <a href="crud-club/delete.php?id=<?php echo $id; ?>"
-                                            class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-200">
-                                                Supprimer
-                                            </a>
-                                            <a href="crud-club/update.php?id=<?php echo $id; ?>"
-                                            class="ml-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200">
-                                                Modifier
-                                            </a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr>
-                                    <td colspan="13" class="text-center py-4 text-gray-500">
-                                        Aucun joueur trouvé.
+            <h1 class="text-2xl font-bold text-center mb-6">Liste des Joueurs</h1>
+    
+            <!-- Tableau des joueurs de champ -->
+            <div class="bg-gray-900 rounded-lg p-5 shadow-lg mb-8">
+                <h2 class="text-xl font-bold text-center mb-4 text-white">Joueurs de Champ</h2>
+                <table class="w-full table-auto bg-gray-800 rounded-lg">
+                    <thead>
+                        <tr class="bg-gray-900">
+                            <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Nom</th>
+                            <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Photo</th>
+                            <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Position</th>
+                            <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Club</th>
+                            <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Nationalité</th>
+                            <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Rating</th>
+                            <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Pace</th>
+                            <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Shooting</th>
+                            <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Passing</th>
+                            <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Dribbling</th>
+                            <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Defending</th>
+                            <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Physical</th>
+                            <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($rows as $row): ?>
+                            <?php if ($row['position'] !== 'GK'): ?>
+                                <tr class="hover:bg-gray-700">
+                                    <td class="py-2 px-4 text-gray-300"><?php echo $row['player_name']; ?></td>
+                                    <td class="py-2 px-4">
+                                        <img src="<?php echo './crud-joueur/' . $row['photo']; ?>" alt="Photo" class="rounded-lg" width="50">
+                                    </td>
+                                    <td class="py-2 px-4 text-gray-300"><?php echo $row['position']; ?></td>
+                                    <td class="py-2 px-4 text-gray-300"><?php echo $row['club_name']; ?></td>
+                                    <td class="py-2 px-4 text-gray-300"><?php echo $row['nationality_name']; ?></td>
+                                    <td class="py-2 px-4 text-gray-300"><?php echo $row['rating']; ?></td>
+                                    <td class="py-2 px-4 text-gray-300"><?php echo $row['pace'] ?></td>
+                                    <td class="py-2 px-4 text-gray-300"><?php echo $row['shooting'] ?></td>
+                                    <td class="py-2 px-4 text-gray-300"><?php echo $row['passing'] ?></td>
+                                    <td class="py-2 px-4 text-gray-300"><?php echo $row['dribbling'] ?></td>
+                                    <td class="py-2 px-4 text-gray-300"><?php echo $row['physical'] ?></td>
+                                    <td class="py-2 px-4 text-gray-300"><?php echo $row['passing'] ?></td>
+                                    <td class="py-2 px-4">
+                                        <a href="crud-joueur/delete.php?id=<?php echo $row['player_id']; ?>" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-200">Supprimer</a>
+                                        <a href="crud-joueur/update.php?id=<?php echo $row['player_id']; ?>" class="ml-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200">Modifier</a>
                                     </td>
                                 </tr>
                             <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
+
+        <!-- Tableau des gardiens -->
+        <div class="bg-gray-900 rounded-lg p-5 shadow-lg">
+            <h2 class="text-xl font-bold text-center mb-4 text-white">Gardiens de But</h2>
+            <table class="w-full table-auto bg-gray-800 rounded-lg">
+                <thead>
+                    <tr class="bg-gray-900">
+                        <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Nom</th>
+                        <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Photo</th>
+                        <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Position</th>
+                        <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Club</th>
+                        <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Nationalité</th>
+                        <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Rating</th>
+                        <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Diving</th>
+                        <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Handling</th>
+                        <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Kicking</th>
+                        <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Reflexes</th>
+                        <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Speed</th>
+                        <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Positioning</th>
+                        <th class="py-2 px-4 text-left font-medium text-gray-200 border-t border-gray-700">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($rows as $row): ?>
+                        <?php if ($row['position'] === 'GK'): ?>
+                            <tr class="hover:bg-gray-700">
+                                <td class="py-2 px-4 text-gray-300"><?php echo $row['player_name']; ?></td>
+                                <td class="py-2 px-4">
+                                    <img src="<?php echo './crud-joueur/' . $row['photo']; ?>" alt="Photo" class="rounded-lg" width="50">
+                                </td>
+                                <td class="py-2 px-4 text-gray-300"><?php echo $row['position']; ?></td>
+                                <td class="py-2 px-4 text-gray-300"><?php echo $row['club_name']; ?></td>
+                                <td class="py-2 px-4 text-gray-300"><?php echo $row['nationality_name']; ?></td>
+                                <td class="py-2 px-4 text-gray-300"><?php echo $row['rating']; ?></td>
+                                <td class="py-2 px-4 text-gray-300"><?php echo $row['diving'] ?></td>
+                                <td class="py-2 px-4 text-gray-300"><?php echo $row['handling']?></td>
+                                <td class="py-2 px-4 text-gray-300"><?php echo $row['kicking']?></td>
+                                <td class="py-2 px-4 text-gray-300"><?php echo $row['reflexes']?></td>
+                                <td class="py-2 px-4 text-gray-300"><?php echo $row['speed']?></td>
+                                <td class="py-2 px-4 text-gray-300"><?php echo $row['positioning']?></td>
+                                <td class="py-2 px-4">
+                                    <a href="crud-joueur/delete.php?id=<?php echo $row['player_id']; ?>" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-200">Supprimer</a>
+                                    <a href="crud-joueur/update.php?id=<?php echo $row['player_id']; ?>" class="ml-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200">Modifier</a>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
             <footer class="w-full bg-white text-right p-4">
                 Built by <a target="_blank" href="https://www.linkedin.com/in/yahya-afadisse-236b022a9/" class="underline">Yahya Afadisse</a>.
             </footer>
