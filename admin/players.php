@@ -391,8 +391,8 @@
                                     <td class="py-2 px-4 text-gray-300"><?php echo $row['shooting'] ?></td>
                                     <td class="py-2 px-4 text-gray-300"><?php echo $row['passing'] ?></td>
                                     <td class="py-2 px-4 text-gray-300"><?php echo $row['dribbling'] ?></td>
+                                    <td class="py-2 px-4 text-gray-300"><?php echo $row['defending'] ?></td>
                                     <td class="py-2 px-4 text-gray-300"><?php echo $row['physical'] ?></td>
-                                    <td class="py-2 px-4 text-gray-300"><?php echo $row['passing'] ?></td>
                                     <td class="py-2 px-4">
                                         <a href="crud-joueur/delete.php?id=<?php echo $row['player_id']; ?>" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-200">Supprimer</a>
                                         <a href="crud-joueur/update.php?id=<?php echo $row['player_id']; ?>" class="ml-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200">Modifier</a>
