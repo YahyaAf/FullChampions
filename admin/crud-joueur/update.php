@@ -270,7 +270,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
                     <!-- GK Ratings -->
-                    <div id="divGk" class="col-span-2 mt-6 <?= $position === 'GK' ? '' : 'hidden' ?>">
+                    <div id="gk-fields" class="col-span-2 mt-6 <?= $position === 'GK' ? '' : 'hidden' ?>">
                         <h5 class="text-lg font-semibold text-blue-400 mb-2">GK Ratings</h5>
 
                         <div class="grid grid-cols-3 gap-6">
@@ -314,7 +314,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <!-- Player Ratings -->
-                    <div id="divPlayer" class="col-span-2 mt-6 <?= $position !== 'GK' ? '' : 'hidden' ?>">
+                    <div id="player-fields" class="col-span-2 mt-6 <?= $position !== 'GK' ? '' : 'hidden' ?>">
                         <h5 class="text-lg font-semibold text-blue-400 mb-2">Player Ratings</h5>
 
                         <div class="grid grid-cols-3 gap-6">
