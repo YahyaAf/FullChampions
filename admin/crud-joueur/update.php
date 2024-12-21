@@ -7,176 +7,176 @@
     <title>Document</title>
 </head>
 <body>
-<?php
-require '../connexion/connecter.php';
+    <?php
+            require '../connexion/connecter.php';
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
 
-    $sql = "
-        SELECT
-            player_id,
-            pl.name AS player_name,
-            pl.photo,
-            pl.position,
-            pl.physicalGk_id,
-            pl.physicalPlayer_id,
-            pl.nationality_id,
-            pl.club_id,
-            c.name AS club_name,
-            n.name AS nationality_name,
-            pl.rating,
-            g.diving,
-            g.handling,
-            g.kicking,
-            g.reflexes,
-            g.speed,
-            g.positioning,
-            p.pace,
-            p.shooting,
-            p.passing,
-            p.dribbling,
-            p.defending,
-            p.physical
-        FROM players pl
-        LEFT JOIN clubs c ON pl.club_id = c.club_id
-        LEFT JOIN nationalities n ON pl.nationality_id = n.nationality_id
-        LEFT JOIN physicalgk g ON pl.physicalGk_id = g.physicalGk_id
-        LEFT JOIN physicalplayer p ON pl.physicalPlayer_id = p.physicalPlayer_id
-        WHERE player_id='$id'
-    ";
+                $sql = "
+                    SELECT
+                        player_id,
+                        pl.name AS player_name,
+                        pl.photo,
+                        pl.position,
+                        pl.physicalGk_id,
+                        pl.physicalPlayer_id,
+                        pl.nationality_id,
+                        pl.club_id,
+                        c.name AS club_name,
+                        n.name AS nationality_name,
+                        pl.rating,
+                        g.diving,
+                        g.handling,
+                        g.kicking,
+                        g.reflexes,
+                        g.speed,
+                        g.positioning,
+                        p.pace,
+                        p.shooting,
+                        p.passing,
+                        p.dribbling,
+                        p.defending,
+                        p.physical
+                    FROM players pl
+                    LEFT JOIN clubs c ON pl.club_id = c.club_id
+                    LEFT JOIN nationalities n ON pl.nationality_id = n.nationality_id
+                    LEFT JOIN physicalgk g ON pl.physicalGk_id = g.physicalGk_id
+                    LEFT JOIN physicalplayer p ON pl.physicalPlayer_id = p.physicalPlayer_id
+                    WHERE player_id='$id'
+                ";
 
-    $query = mysqli_query($conn, $sql);
+                $query = mysqli_query($conn, $sql);
 
-    if ($query && mysqli_num_rows($query) > 0) {
-        $row = mysqli_fetch_assoc($query);
+                if ($query && mysqli_num_rows($query) > 0) {
+                    $row = mysqli_fetch_assoc($query);
 
-        $nom = $row['player_name'];
-        $photo = $row['photo'];
-        $rating = $row['rating'];
-        $nationality_id = $row['nationality_id'];
-        $club_id = $row['club_id'];
-        $club = $row['club_name'];
-        $nationality = $row['nationality_name'];
-        $position = $row['position'];
+                    $nom = $row['player_name'];
+                    $photo = $row['photo'];
+                    $rating = $row['rating'];
+                    $nationality_id = $row['nationality_id'];
+                    $club_id = $row['club_id'];
+                    $club = $row['club_name'];
+                    $nationality = $row['nationality_name'];
+                    $position = $row['position'];
 
-        // Physical GK
-        $physicalGK_id = $row['physicalGk_id'];
-        $diving = $row['diving'];
-        $handling = $row['handling'];
-        $kicking = $row['kicking'];
-        $reflexes = $row['reflexes'];
-        $speed = $row['speed'];
-        $positioning = $row['positioning'];
+                    // Physical GK
+                    $physicalGK_id = $row['physicalGk_id'];
+                    $diving = $row['diving'];
+                    $handling = $row['handling'];
+                    $kicking = $row['kicking'];
+                    $reflexes = $row['reflexes'];
+                    $speed = $row['speed'];
+                    $positioning = $row['positioning'];
 
-        // Physical Player
-        $physicalPlayer_id = $row['physicalPlayer_id'];
-        $pace = $row['pace'];
-        $shooting = $row['shooting'];
-        $passing = $row['passing'];
-        $dribbling = $row['dribbling'];
-        $defending = $row['defending'];
-        $physical = $row['physical'];
-    } else {
-        echo "<p class='text-red-500'>Erreur : Joueur introuvable.</p>";
-        exit;
-    }
-}
+                    // Physical Player
+                    $physicalPlayer_id = $row['physicalPlayer_id'];
+                    $pace = $row['pace'];
+                    $shooting = $row['shooting'];
+                    $passing = $row['passing'];
+                    $dribbling = $row['dribbling'];
+                    $defending = $row['defending'];
+                    $physical = $row['physical'];
+                } else {
+                    echo "<p class='text-red-500'>Erreur : Joueur introuvable.</p>";
+                    exit;
+                }
+            }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['nom'];
-    $rating = $_POST['rating'];
-    $nationality = $_POST['nationality'];
-    $club = $_POST['club'];
-    $position = $_POST['position'];
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $name = $_POST['nom'];
+                $rating = $_POST['rating'];
+                $nationality_id = $_POST['nationality'];  // Get the new nationality_id
+                $club_id = $_POST['club'];  // Get the new club_id
+                $position = $_POST['position'];
 
-    // Physical GK
-    $diving = $_POST['diving'] ?? null;
-    $handling = $_POST['handling'] ?? null;
-    $kicking = $_POST['kicking'] ?? null;
-    $reflexes = $_POST['reflexes'] ?? null;
-    $speed = $_POST['speed'] ?? null;
-    $positioning = $_POST['positioning'] ?? null;
+                // Physical GK
+                $diving = $_POST['diving'] ?? null;
+                $handling = $_POST['handling'] ?? null;
+                $kicking = $_POST['kicking'] ?? null;
+                $reflexes = $_POST['reflexes'] ?? null;
+                $speed = $_POST['speed'] ?? null;
+                $positioning = $_POST['positioning'] ?? null;
 
-    // Physical Player
-    $pace = $_POST['pace'] ?? null;
-    $shooting = $_POST['shooting'] ?? null;
-    $passing = $_POST['passing'] ?? null;
-    $dribbling = $_POST['dribbling'] ?? null;
-    $defending = $_POST['defending'] ?? null;
-    $physical = $_POST['physical'] ?? null;
+                // Physical Player
+                $pace = $_POST['pace'] ?? null;
+                $shooting = $_POST['shooting'] ?? null;
+                $passing = $_POST['passing'] ?? null;
+                $dribbling = $_POST['dribbling'] ?? null;
+                $defending = $_POST['defending'] ?? null;
+                $physical = $_POST['physical'] ?? null;
 
-    // Update photo
-    $newPhoto = $photo;
-    if (isset($_FILES['photo']) && $_FILES['photo']['error'] === 0) {
-        $target_dir = "uploads/photos/";
-        $uniqueFileName = uniqid() . '-' . basename($_FILES['photo']['name']);
-        $target_file = $target_dir . $uniqueFileName;
+                // Update photo
+                $newPhoto = $photo;
+                if (isset($_FILES['photo']) && $_FILES['photo']['error'] === 0) {
+                    $target_dir = "uploads/photos/";
+                    $uniqueFileName = uniqid() . '-' . basename($_FILES['photo']['name']);
+                    $target_file = $target_dir . $uniqueFileName;
 
-        if (!is_dir($target_dir)) {
-            mkdir($target_dir, 0777, true);
-        }
+                    if (!is_dir($target_dir)) {
+                        mkdir($target_dir, 0777, true);
+                    }
 
-        if (move_uploaded_file($_FILES['photo']['tmp_name'], $target_file)) {
-            $newPhoto = $target_file;
-        } else {
-            echo "<p class='text-red-500'>Erreur lors du téléchargement du fichier.</p>";
-        }
-    }
+                    if (move_uploaded_file($_FILES['photo']['tmp_name'], $target_file)) {
+                        $newPhoto = $target_file;
+                    } else {
+                        echo "<p class='text-red-500'>Erreur lors du téléchargement du fichier.</p>";
+                    }
+                }
 
-    // Update clubs and nationalities
-    $query_club = "UPDATE `clubs` SET `name`='$club' WHERE club_id = '$club_id'";
-    mysqli_query($conn, $query_club);
+                // Update clubs and nationalities
+                $query_club = "UPDATE `players` SET `club_id`='$club_id' WHERE player_id = '$id'";
+                mysqli_query($conn, $query_club);
 
-    $query_nationality = "UPDATE `nationalities` SET `name`='$nationality' WHERE nationality_id = '$nationality_id'";
-    mysqli_query($conn, $query_nationality);
+                $query_nationality = "UPDATE `players` SET `nationality_id`='$nationality_id' WHERE player_id = '$id'";
+                mysqli_query($conn, $query_nationality);
 
-    // Update physical stats
-    if ($position === 'GK') {
-        $phisical_gk_query = "
-            UPDATE `physicalgk` 
-            SET `diving`='$diving', `handling`='$handling', `kicking`='$kicking', 
-                `reflexes`='$reflexes', `speed`='$speed', `positioning`='$positioning'
-            WHERE `physicalGk_id`='$physicalGK_id'
-        ";
-        mysqli_query($conn, $phisical_gk_query);
-    } else {
-        $phisical_player_query = "
-            UPDATE `physicalplayer` 
-            SET `pace`='$pace', `shooting`='$shooting', `passing`='$passing', 
-                `dribbling`='$dribbling', `defending`='$defending', `physical`='$physical'
-            WHERE `physicalPlayer_id`='$physicalPlayer_id'
-        ";
-        mysqli_query($conn, $phisical_player_query);
-    }
+                // Update physical stats
+                if ($position === 'GK') {
+                    $phisical_gk_query = "
+                        UPDATE `physicalgk` 
+                        SET `diving`='$diving', `handling`='$handling', `kicking`='$kicking', 
+                            `reflexes`='$reflexes', `speed`='$speed', `positioning`='$positioning'
+                        WHERE `physicalGk_id`='$physicalGK_id'
+                    ";
+                    mysqli_query($conn, $phisical_gk_query);
+                } else {
+                    $phisical_player_query = "
+                        UPDATE `physicalplayer` 
+                        SET `pace`='$pace', `shooting`='$shooting', `passing`='$passing', 
+                            `dribbling`='$dribbling', `defending`='$defending', `physical`='$physical'
+                        WHERE `physicalPlayer_id`='$physicalPlayer_id'
+                    ";
+                    mysqli_query($conn, $phisical_player_query);
+                }
 
-    // Update player
-    $player_query = "
-        UPDATE `players` 
-        SET `name`='$name', `position`='$position', `rating`='$rating', `photo`='$newPhoto' 
-        WHERE `player_id`='$id'
-    ";
-    $result = mysqli_query($conn, $player_query);
+                // Update player
+                $player_query = "
+                    UPDATE `players` 
+                    SET `name`='$name', `position`='$position', `rating`='$rating', `photo`='$newPhoto' 
+                    WHERE `player_id`='$id'
+                ";
+                $result = mysqli_query($conn, $player_query);
 
-    if ($result) {
-        header("Location: ../players.php");
-        exit;
-    } else {
-        echo "<p class='text-red-500'>Erreur lors de la mise à jour : " . mysqli_error($conn) . "</p>";
-    }
-}
+                if ($result) {
+                    header("Location: ../players.php");
+                    exit;
+                } else {
+                    echo "<p class='text-red-500'>Erreur lors de la mise à jour : " . mysqli_error($conn) . "</p>";
+                }
+            }
 
-        // Fetch clubs and nationalities for the form
-        $query_nationalities = "SELECT * FROM nationalities";
-        $nationalities_result = $conn->query($query_nationalities);
-        $nationalities = $nationalities_result->fetch_all(MYSQLI_ASSOC);
+            // Fetch clubs and nationalities for the form
+            $query_nationalities = "SELECT * FROM nationalities";
+            $nationalities_result = $conn->query($query_nationalities);
+            $nationalities = $nationalities_result->fetch_all(MYSQLI_ASSOC);
 
-        $query_clubs = "SELECT * FROM clubs";
-        $clubs_result = $conn->query($query_clubs);
-        $clubs = $clubs_result->fetch_all(MYSQLI_ASSOC);
-?>
+            $query_clubs = "SELECT * FROM clubs";
+            $clubs_result = $conn->query($query_clubs);
+            $clubs = $clubs_result->fetch_all(MYSQLI_ASSOC);
 
-            <main class="w-full flex-grow p-6">
+        ?>
+        <main class="w-full flex-grow p-6">
                 <!-- Title -->
                 <h2 class="text-3xl font-extrabold text-black mb-6 text-center dark:text-black-300">
                     <i class="fas fa-user-plus mr-2"></i> Ajouter un Joueur
@@ -213,8 +213,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500" 
                             required>
                             <?php foreach ($nationalities as $nation): ?>
-                                <option value="<?= htmlspecialchars($nation['name']) ?>" 
-                                    <?= $nationality == $nation['name'] ? 'selected' : '' ?>>
+                                <option value="<?= htmlspecialchars($nation['nationality_id']) ?>" 
+                                    <?= $nationality_id == $nation['nationality_id'] ? 'selected' : '' ?>>
                                     <?= htmlspecialchars($nation['name']) ?>
                                 </option>
                             <?php endforeach; ?>
@@ -228,8 +228,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             class="w-full mt-1 p-2 bg-gray-800 text-gray-200 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500" 
                             required>
                             <?php foreach ($clubs as $team): ?>
-                                <option value="<?= htmlspecialchars($team['name']) ?>" 
-                                    <?= $club == $team['name'] ? 'selected' : '' ?>>
+                                <option value="<?= htmlspecialchars($team['club_id']) ?>" 
+                                    <?= $club_id == $team['club_id'] ? 'selected' : '' ?>>
                                     <?= htmlspecialchars($team['name']) ?>
                                 </option>
                             <?php endforeach; ?>
@@ -366,7 +366,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                 </form>
-            </main>
+        </main>
             <script>
             const positionField = document.getElementById('position');
             const gkFields = document.getElementById('gk-fields');
